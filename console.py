@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
                 continue
             key, value = key_value
             # Process string values
-            if value[0] == '"' and value[-1] == '"':
+            if value.startswith('"') and value.endswith('"'):
                 value = value[1:-1].replace('_', ' ').replace('\\"', '"')
             # Process numeric values
             try:
@@ -157,9 +157,9 @@ class HBNBCommand(cmd.Cmd):
             setattr(new_instance, key, value)  # Set the attribute if possible
 
         storage.new(new_instance)
-        storage.save()
+        new_instance.save()  # Ensure it's saved after setting attributes
         print(new_instance.id)
-   
+
     def help_create(self):
         """Help information for the create method."""
         print("Creates a class of any type with optional attributes.")
