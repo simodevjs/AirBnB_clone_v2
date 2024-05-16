@@ -15,9 +15,14 @@ def list_states():
     Fetches all states from the database using the storage engine, sorts them
     alphabetically by name, and renders them in an HTML page.
     """
-
-    states = list(storage.all(State).values())
-    states.sort(key=lambda state: state.name)  # Sort states by name
+    try:
+        # Fetching all State objects from storage, sorting by name
+        states = list(storage.all(State).values())
+        states.sort(key=lambda state: state.name)
+    except Exception as e:
+        # Handling exceptions and providing feedback
+        print(f"An error occurred: {e}")
+        states = []
     return render_template('states_list.html', states=states)
 
 @app.teardown_appcontext
@@ -29,5 +34,5 @@ def teardown_db(exception=None):
     storage.close()
 
 if __name__ == '__main__':
-    # Run the Flask application on all available IPs and port 5000
-    app.run(host='0.0.0.0', port=5000)
+    # Running the Flask application on all available IPs and port 5000
+    app.run(host='0.0.0.0', port=5000, debug=True)  # Enable debug for development
