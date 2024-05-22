@@ -13,8 +13,8 @@ app = Flask(__name__)
 @app.route('/states_list', strict_slashes=False)
 def list_states():
     """
-    Fetches all states from the database using the storage engine,
-    sorts them alphabetically by name, and renders them in an HTML page.
+    Fetches all states from the database using the storage engine, sorts them
+    alphabetically by name, and renders them in an HTML page.
     """
     try:
         # Fetching all State objects from storage, sorting by name
@@ -37,4 +37,3 @@ def teardown_db(exception=None):
 if __name__ == '__main__':
     # Running the Flask application on all available IPs and port 5000
     app.run(host='0.0.0.0', port=5000, debug=True)  # Enable debug for development
-
