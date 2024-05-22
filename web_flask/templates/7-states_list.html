@@ -1,14 +1,20 @@
 <!DOCTYPE html>
+<!-- Main HTML document for displaying sorted list of states -->
 <HTML lang="en">
     <HEAD>
+        <!-- Title of the webpage -->
         <TITLE>HBNB</TITLE>
     </HEAD>
     <BODY>
+        <!-- Heading displaying "States" -->
         <H1>States</H1>
+        <!-- Unordered list of states, sorted by name -->
         <UL>
         {% for state in states|sort(attribute="name") %}
+            <!-- List item for each state showing its ID and name -->
             <LI>{{ state.id|e }}: <B>{{ state.name|e }}</B></LI>
         {% endfor %}
         </UL>
     </BODY>
 </HTML>
+
